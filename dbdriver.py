@@ -20,11 +20,11 @@ class DBDriver(object):
                             " M.attire, M.good_for_groups, M.price_range, M.delivery, M.outdoor_seating, M.takes_reservations, M.categories"
 
         query = "SELECT "+ selection_columns +" FROM yelp_ratings R, yelp_restaurants M " \
-                "RECOMMEND R.restaurant_id TO R.user_id ON R.rating USING SVD " \
+                "RECOMMEND R.restaurant_id TO R.user_id ON R.rating USING ItemCosCF " \
                 "WHERE R.user_id = "+ str(user_id) +" and R.restaurant_id = M.restaurant_id and M.city = '"+city+"' " \
                 "ORDER BY R.rating desc " \
                 "LIMIT 15;"
-
+        
         cursor.execute(query)
         
         results = cursor.fetchall()
