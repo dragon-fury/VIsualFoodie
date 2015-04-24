@@ -7,18 +7,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="static/sankey.js"></script>
-   
+    
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='animate.min.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css"/>
     <!-- <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'> -->
   </head>
   <body>
- 
+    
     <div class="container">
       <div class="rows">
         <div id="chart" class="col-md-6">
         </div>
-<!--         <div class="col-md-6">
+        <div class="col-md-6">
+          <div class="detail-box bg-info animated hidden">
+            <div class="name"></div>
+            <div class="address"></div>
+            <div class="categories"></div>
+            <p>  </p>
+            <hr />
+            <p>  </p>
+            <button type="button" class="btn btn-primary forward">More Info</button>
+            <button type="button" class="btn btn-primary">Checkin Time</button>
+          </div>
+        </div>
+        <!--         <div class="col-md-6">
           <ul class="list-group">
             <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
             <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li>
@@ -28,7 +41,7 @@
         </div> -->
       </div>
     </div>
-
+    <script type="text/javascript" src="static/restaurant_detail.js"></script>
     <script type="text/javascript" src="static/recommendation.js"></script>
   </body>
 </html>

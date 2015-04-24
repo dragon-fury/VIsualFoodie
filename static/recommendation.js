@@ -11,6 +11,8 @@
 
     var color = d3.scale.category20();
     var preference_names = ["Alcohol", "Noise Level", "Attire", "Good for Groups", "Price Range", "Delivery", "Outdoor Seating", "Takes Reservations"];
+    var restaurantMapping = [];
+
     var svg = d3.select("#chart").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -26,7 +28,7 @@
     var path = sankey.link();
     var sequence = [],
         target_map = {},
-        restaurant_offset = 8;
+        restaurantOffset = 8;
 
     var makeDest = function(links) {
         for (var i = 0; i < links.length; i++) {
@@ -40,7 +42,7 @@
         var limit = (Object.keys(target_map)).length;
 
         for (var i = 0; i < limit; i++) {
-            var sourceArray = (target_map[i+restaurant_offset]).sort();
+            var sourceArray = (target_map[i+restaurantOffset]).sort();
             var seqArray = sequence.sort();
 
             for (var k = 0, j = 0; k < sourceArray.length && j < seqArray.length;) {
@@ -53,7 +55,7 @@
                 }
             }
 
-            if(j === seqArray.length) highlight_list.push(i+restaurant_offset);
+            if(j === seqArray.length) highlight_list.push(i+restaurantOffset);
         }
         return highlight_list;
     };
@@ -61,6 +63,8 @@
     // load the data
     d3.json("http://localhost:5000/restaurants?user_id=3&city=Tempe", function(error, graph) {
         makeDest(graph.links);
+        restaurantMapping = graph.mapping;
+
         sankey
             .nodes(graph.nodes)
             .links(graph.links)
@@ -97,7 +101,11 @@
                 return d.dy;
             })
             .attr("width", sankey.nodeWidth())
-            .attr("class", function(d) { return ""+d.node;})
+            .attr("class", function(d) {
+                if(d.node >= restaurantOffset)
+                    return "restaurant "+d.node;
+                return ""+d.node;
+            })
             .style("fill", function(d) {
                 return d.color = color(d.name.replace(/ .*/, ""));
             })
@@ -132,7 +140,7 @@
     });
 
     var highlight = function(evt) {
-        if(parseInt($(this).attr('class')) > 7)
+        if(/(^|\s)restaurant(\s|$)/.test($(this).attr("class")))
             return twilight($(this));
 
         svg.selectAll(".link").style('stroke-opacity', 0.1);
@@ -145,15 +153,42 @@
         }
 
         var target = findTarget();
+        var selected = $('.selected');
+        $(".restaurant").attr("stroke-width", 1);
+        for(var i=0; i<selected.length;i++) {
+            var newClass = $(selected[i]).attr('class').split(" ").sort().slice(0,2).join(" ");
+            $(selected[i]).attr("class", newClass);
+        }
+
         for(var i = 0; i < target.length; i++) {
             for(var j = 0; j < sequence.length; j++){
                 var classed = preference_names[sequence[j]].substring(0, 3);
                 svg.selectAll(".link." + classed+".dest-"+target[i]).style('stroke-opacity', 0.6);
+                $(".restaurant."+target[i]).attr("class", "restaurant selected "+target[i]);
             }
         }
+        $('.selected').attr("stroke-width", 5);
     };
 
     var twilight = function(element) {
-        console.log(element);
+        var restaurantId = parseInt($(element).attr('class').split(" ").sort().slice(0,1));
+        restaurantId = restaurantMapping[restaurantId - restaurantOffset];
+        var detailResult = $.ajax({
+            url: "http://localhost:5000/restaurant_detail/"+restaurantId
+        });
+
+        detailResult.done(function(result) {
+            detailFiller.renderDetails(result);
+        });
     };
+
+    $('.forward').on('click', function(e){
+        e.preventDefault();
+        var selected = $('.selected');
+        var restaurantsToSend = [];
+        for(var i=0; i<selected.length;i++) {
+            restaurantsToSend.push(($(selected[i]).attr('class').split(" ").sort())[0]);
+        }
+        window.location = "http://localhost:5000/details?restaurant_ids="+restaurantsToSend.join(",");
+    });
 })();

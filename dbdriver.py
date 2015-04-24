@@ -8,6 +8,9 @@ class DBDriver(object):
         self.pg_host = 'localhost'
         client = MongoClient()
         self.db = client.yelp
+        self.checkin = self.db.yelp_checkin
+        self.restaurants = self.db.yelp_restaurants
+        self.users = self.db.yelp_users
 
     def get_connection(self):
         return psycopg2.connect("dbname="+self.pg_dbname+" port="+self.pg_port+" host="+self.pg_host)
@@ -35,5 +38,10 @@ class DBDriver(object):
 
     # def __return_as_json(data):
 
-    # def fetch_restaurant_details(self, restaurant_ids):
-
+    def fetch_restaurant_details(self, restaurant_id):
+        cursor = self.restaurants.find({'mapping_id': int(restaurant_id)}, {'_id': 0, 'city': 1, 'review_count': 1, 'name': 1, 'business_id': 1, 'full_address': 1, 'state': 1, 'stars': 1, 'attributes': 1, 'categories': 1})
+        result = {}
+        for entry in cursor:
+            result = entry
+        print result
+        return result
