@@ -61,7 +61,7 @@
     };
 
     // load the data
-    d3.json("http://localhost:5000/restaurants?user_id=3&city=Tempe", function(error, graph) {
+    d3.json("http://localhost:5000/restaurants", function(error, graph) {
         makeDest(graph.links);
         restaurantMapping = graph.mapping;
 
@@ -182,13 +182,5 @@
         });
     };
 
-    $('.forward').on('click', function(e){
-        e.preventDefault();
-        var selected = $('.selected');
-        var restaurantsToSend = [];
-        for(var i=0; i<selected.length;i++) {
-            restaurantsToSend.push(($(selected[i]).attr('class').split(" ").sort())[0]);
-        }
-        window.location = "http://localhost:5000/details?restaurant_ids="+restaurantsToSend.join(",");
-    });
+
 })();

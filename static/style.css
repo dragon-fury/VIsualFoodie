@@ -4,6 +4,116 @@
   stroke-width: .5px;
 }
 
+.chord path {
+  fill-opacity: .67;
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+.group {
+  cursor: pointer;
+}
+
+/* Scatter Plot Style */
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+.selected-dot {
+  stroke-width: 4px;
+  stroke: #FF6666;
+}
+
+.selected-dot.dot-color {
+  stroke: #CCCCFF;
+}
+
+.tooltip-custom {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(255,250,240,1);
+  border-radius: 5px;
+  border: 1px solid #DCA;
+  color: #111;
+  left: 20%;
+  padding: 3px 10px;
+  z-index: 98;
+}
+
+.tooltip-custom span {
+    font-size: 16px;
+    display:block;
+    width:100%;
+    margin: 0 auto;
+}
+
+.tooltip-custom span em {
+  font-weight: bold;
+}
+
+.tooltip-custom .title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Restaurant detail */
+.detailso {
+  position: relative;
+  left: 230px;
+  top: 20px;
+  width: 400px !important;
+}
+
+.detail-box {
+  padding: 5px;
+  border: 2px solid #6699FF;
+  border-radius: 5px;
+  width: auto;
+}
+
+
+.detail-box div {
+  position: relative;
+}
+
+.table-container {
+    display: table;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.row  {
+  display: table-row;
+}
+
+.left, .right {
+  display: table-cell;
+}
+
+
+/* Radar */
+.radar-chart .axis .legend {
+  font-size: 14px !important;
+}
+
+.area.radar-chart-serie0 {
+  fill: #FF6666;
+  stroke: #000;
+}
+
+.area.radar-chart-serie1 {
+  fill: #CCCCFF;
+  stroke: #000;
+}
+
+/* Sankey style */
 .node rect {
   cursor: move;
   fill-opacity: .9;
@@ -40,4 +150,212 @@
 
 .categories {
   margin-right: 3px;
+}
+
+.ring.selected {
+  stroke-width: 5;
+  stroke: #0099FF;
+}
+
+.slide-fade ul {
+  padding-left: 130px;
+  padding-right: 75px;
+}
+
+.slide-fade li {
+  list-style: none;
+  background-color: #d1703c;
+  color: #FFF;
+  height: 0;
+  line-height: 2em;
+  margin: 0;
+  padding: 0 0.5em;
+  overflow: hidden;
+}
+
+.slide-fade li.show {
+  height: 5em;
+  margin: 2px 0;
+}
+
+.slide-fade {
+  padding-top: 150px;
+}
+
+.slide-fade .title{
+  margin-left: 200px;
+  margin-bottom: 30px;
+}
+
+.slide-fade .next-page{
+  margin-left: 240px;
+  margin-top: 30px;
+}
+
+.slide-fade li {
+  transition: all 0.4s ease-out;
+  opacity: 0;
+}
+.slide-fade li.show {
+  opacity: 1;
+}
+
+/* Inspired from Thibaut Courouble's Registration Form — CSS Code Snippet*/
+.register-switch {
+  height: 32px;
+  margin-bottom: 15px;
+  padding: 4px;
+  background: #6db244;
+  border-radius: 2px;
+  background-image: -webkit-linear-gradient(top, #60a83a, #7dbe52);
+  background-image: -moz-linear-gradient(top, #60a83a, #7dbe52);
+  background-image: -o-linear-gradient(top, #60a83a, #7dbe52);
+  background-image: linear-gradient(to bottom, #60a83a, #7dbe52);
+  -webkit-box-shadow: inset 0 1px rgba(0, 0, 0, 0.05), inset 1px 0 rgba(0, 0, 0, 0.02), inset -1px 0 rgba(0, 0, 0, 0.02);
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.05), inset 1px 0 rgba(0, 0, 0, 0.02), inset -1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.register-switch-alcohol, .register-switch-price {
+  display: none;
+}
+
+.register-switch-label {
+  float: left;
+  width: 50%;
+  line-height: 24px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.register-switch-alcohol:checked + .register-switch-label, .register-switch-price:checked + .register-switch-label {
+  font-weight: 500;
+  color: #434248;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+  background: white;
+  border-radius: 2px;
+  background-image: -webkit-linear-gradient(top, #fefefe, #eeeeee);
+  background-image: -moz-linear-gradient(top, #fefefe, #eeeeee);
+  background-image: -o-linear-gradient(top, #fefefe, #eeeeee);
+  background-image: linear-gradient(to bottom, #fefefe, #eeeeee);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Taken from https://proto.io/freebies/onoff/*/
+.onoffswitch {
+    position: relative; 
+    width: 85px;
+    margin-left: 240px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 0px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 25px; padding: 0; line-height: 21px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+.onoffswitch-inner:before {
+    content: "YES";
+    padding-left: 10px;
+    background-color: #19B34A; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "NO";
+    padding-right: 10px;
+    background-color: #CCCCCC; color: #333333;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 25px; margin: 0px;
+    background: #1B78D4;
+    position: absolute; top: 0; bottom: 0; right: 60px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+
+
+#search_bar {
+  width: 50%;
+  margin: 0 auto;
+}
+
+
+/* Bubble */
+.words-title {
+  position: relative;
+  top: 170px;
+  font-weight: bold;
+}
+
+.spider-title {
+  margin-left: 140px;
+  font-weight: bold;
+}
+
+#bubbles {
+  position: relative;
+  top: 110px;
+  right: 180px;
+}
+
+#bubble-background {
+  fill: none;
+  pointer-events: none;
+}
+
+.bubble-node {
+  fill: #ADADFF;
+}
+
+.bubble-selected {
+  fill: #CEE98F;
+  stroke: #A6BA92;
+  stroke-width: 1.5px;
+}
+
+a.bubble-label {
+  font-family: georgia, "times new roman", times, serif;
+  color: inherit;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1em;
+  position: absolute;
+}
+
+#bubbles a, #bubbles a:hover, #bubbles a:focus {
+  text-decoration: none !important;
+  color: #000;
+  pointer-events: none;
+}
+
+
+.bubble-label .bubble-label-value {
+  font: 11px sans-serif;
+  white-space: nowrap;
 }
